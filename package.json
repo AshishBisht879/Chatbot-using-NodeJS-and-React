@@ -1,0 +1,15 @@
+{
+    "name": "reactbot",
+    "version": "1.0.0",
+    "description": "Bot For Student info",
+    "main": "index.js",
+    "engines": { "node": "11.14.0", "npm": "6.12.0" },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Asish",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
