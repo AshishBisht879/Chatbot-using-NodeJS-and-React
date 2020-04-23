@@ -1,9 +1,9 @@
 //getting configuration settings from environment variables  
 module.exports = {
-    googleProjectID: process.env.GOOGLE_PROJECT_ID,
-    dialogFlowSessionID: process.env.DIALOGFLOW_SESSION_ID,
-    dialogFlowSessionLanguageCode: process.env.DIALOGFLOW_LANGUAGE_CODE,
-    googleClientEmail: process.env.GOOGLE_CLIENT_EMAIL,
-    googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY,
+    googleProjectID: 'student-info-knmtll', //process.env.GOOGLE_PROJECT_ID,
+    dialogFlowSessionID: 'react-bot-session', //process.env.DIALOGFLOW_SESSION_ID,
+    dialogFlowSessionLanguageCode: 'en-US', //process.env.DIALOGFLOW_LANGUAGE_CODE,
+    googleClientEmail: 'dialogflow-client@student-info-knmtll.iam.gserviceaccount.com', //process.env.GOOGLE_CLIENT_EMAIL,
+    googlePrivateKey: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdINVIkOwSt9CO\ng6Kn69Op9hFZWsEs9GEPDElV3tSSiEl//mTOCxzvB8fQ5iNb4Xqyz3N9E9aZXq02\ngiXx0e0UOTza7nPVttF2yx6mze6IjaVsJsSbhLJyWgCLavfk82mdSmuUJ0o/OhV4\najrgVvKx+RdhKve764amvMRsCO09vWPPLzqCm5NYhh2uz6De8l/WnsIhMIs5o9zA\nkApXdGgCoxHGEl7LpW2U89y5XkrkkT1b4PLLGbtvP3jKjtP3cvDXacMkdzU4ZXSo\n7YFBMFONiNGZh7Bpfrbhr2zDMGtGVvprMc7Ai1VKDWpv8blRft1t+d6rlZc0pJYw\nR+7KxiNHAgMBAAECggEAFoHK+0uC/UVmMtvJM0t09L4CCy4USKeytXCZmprCEUFD\nYfmjH954pQaUySgF/ZXFORK9JLfwP+TPY+TtoX9j+ccfH+8TGZRH2b/LorIRzm6X\nuO+uruYpl3ar6EyIuLtjL/wmf8DHAlqEE80HpPXfar3W6vy4IqtgjMayThVTQkoC\np8Plrq9QvEtihUNeyCezrAyOxayj5ESENcotqG5V8xk/6D1Kxyod9aPn12YF/AQH\nXMCiumMqqpJTCyt6clIShcbAceYIaqNfYxrDXt82veCogIPrXpNx8fkcPhxxRldM\n9sDj/VrYLSGe+Ve5O3pJIo81KWvFOwRUe8L7XrKg6QKBgQDMXE+O7LRwkRee/z5B\neMoajsXvCRcvtxy96uHuuopGX+ZMT+gW6UNNC03KNxNXnF7hHvGALGNiNjUmJHSm\nHnlJWq2cBCYqz+GGoyCT/ple8TLFzozoTI+bfN3uBKL7Z1iJva4ganYc+zvPeRO1\n/zKyzf0z9+zgbV1ClO7yJn28LwKBgQDE1SeK5l0tc83PQ/nRExslClGjDRkOQW+k\nLZpFKAHHKxHhvb6JDEJ9e0RudMU4TVY5XYKA3jpLYGs9Bg1fXL6sQAKZgedqBuS2\nHoDX4+Cp/yOgZc8VjBRGnpbGt+E94/f7fu1RzSnH6fqMf5hc0S+Oj6uEmgbcTuRn\nTp+ghIpMaQKBgE9VnsUbe0kf6o2dBSwhmkQJHSoY21l4ur23y5ID9N4xKJSDiNQs\nJiZotwBDtUyTtfmrK5HYqZRc+vEdwfMjbW5et3sT2UVRgnnkJieN9Th4Zn+IGges\ngSuZpAZc4nC6xBJlAo4vBj9mAOggVtiWg7YKZbuhCeJuUoAglUqIStOdAoGAOjxO\njLwHiXEfzVjxSrh6aYUaDkHLzfnyTALqB9gEXqcRjVaUTvv/mBymbH/D8hp/jk1q\nVTJq0O5gDBgEUNih2Vi+7CgRDb+oX3G68SUMzX8dTVGR6XAed55oQbcZvzP5pMEy\n+ebXm7xQUs1ViPCjP2ymdH8V1IzK6v3KILXWLTECgYEAw+tw/rVt5RZ8H31oY28Q\n32QZ20i23j4BTfaE24X/PXoibhn6W/5IhOttJf02EKJGErjbLTZqoSu0BiF/9Dqk\nHoH+vMxQGKx+Nbj9af5a/XLha++Xh8dw7Z5UeYtbQz0ZYHSuadcW+zY5JgLuDtMx\ncJ0HfemlTsaoz4iL5YWKSFk=\n-----END PRIVATE KEY-----\n' //process.env.GOOGLE_PRIVATE_KEY,
 
 };
