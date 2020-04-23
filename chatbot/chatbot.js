@@ -54,7 +54,7 @@ module.exports = {
                 event: {
                     // The query to send to the dialogflow agent
                     name: event,
-                    parameters: structjson.jsonToStructProto(parameters),
+                    parameters: structjson.jsonToStructProto(parameters), //Dialogflow's v2 API uses gRPC. You'll need a jsonToStructProto method to convert your JavaScript object to a proto struct.languageCode: languageCode,
                     // The language used by the client (en-US)
                     languageCode: config.dialogFlowSessionLanguageCode,
                 },
