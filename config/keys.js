@@ -4,5 +4,5 @@
 if (process.env.NODE_ENV === 'production') {
     module.exports = require('./prod.js');
 } else
-    module.exports = require('./dev');
+    module.exports = require('./dev.js');
 // The right set of keys will be loaded based on the node environment variable.
