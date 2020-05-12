@@ -4,19 +4,21 @@ const dialogflow = require('dialogflow');
 const config = require('../config/keys.js');
 const structjson = require('./structjson.js');
 
-const projectID = config.googleProjectID;
+const projectId = config.googleProjectID;
+const sessionId=config.dialogFlowSessionID;
 const credentials = {
     client_email: config.googleClientEmail,
     private_key: config.googlePrivateKey
 };
+ 
 
 //initialize session Client
-const sessionClient = new dialogflow.SessionsClient({ projectID, credentials });
-//session path
-const sessionPath = sessionClient.sessionPath(config.googleProjectID, config.dialogFlowSessionID);
+const sessionClient = new dialogflow.SessionsClient({ projectId, credentials });
 
 module.exports = {
-    textQuery: async function(text, parameters = {}) {
+    textQuery: async function(text,userID,parameters = {}) {
+
+        let sessionPath=sessionClient.sessionPath(projectId,sessionId+userID);   //this is session path for each user where both sessionId  from config with userId from client cookie makes a unique ID for a session  
 
         let self = module.exports;
         // The text query request.
@@ -44,9 +46,12 @@ module.exports = {
 
     },
 
-    eventQuery: async function(event, parameters = {}) {
+    eventQuery: async function(event,userID,parameters = {}) {
 
         let self = module.exports;
+
+        let sessionPath=sessionClient.sessionPath(projectId,sessionId+userID);    
+
         // The event query request.
         const request = {
             session: sessionPath,
