@@ -59,7 +59,7 @@ class Chatbot extends Component {                 //syntax to make a class compo
             this.setState({ messages: [...this.state.messages, says] });
         }
         }
-        catch(e){
+        catch(error){
             let says = {
                 speaks: 'bot',
             msg: {
@@ -89,7 +89,7 @@ class Chatbot extends Component {                 //syntax to make a class compo
             this.setState({ messages: [...this.state.messages, says] });
         }
     }
-    catch(e){
+    catch(error){
        let  says = {
             speaks: 'bot',
         msg: {

@@ -15,14 +15,15 @@ app.use(bodyParser.json());
 require('./routes/routes.js')(app);
 require('./routes/fulfillmentRoutes.js')(app);
 
-if(process.env.NODE_ENV==='production'){            //tell the server to render the frontend files
+if(process.env.NODE_ENV==='production'){             //tell the server to render the frontend files
     app.use(express.static('client/build'));        //all css and javascript files are here
-}
 
 const path=require('path');
 app.get('*',(req,res)=>{
     res.sendFile(path.resolve(__dirname,'client','build','index.html'));  //every files that is inside the build and client folder will server to index.html
 });
+
+} 
 
 
 
