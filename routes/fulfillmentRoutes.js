@@ -20,8 +20,6 @@ module.exports = app => {
         }
 
         function No_answered_query(agent) {
-            agent.add('no_answer');
-
             agent.add("Thank you. I hope next time i wl learn about that Query");
 
             ErrorQuery.findOne({ 'Query_Asked': agent.parameters.Query }, function (err, found) {          //findOne  method to search if the unanswered query already exist in the mode ErrorQuery
@@ -37,20 +35,97 @@ module.exports = app => {
 
         }
 
-        async function syllabus(agent) {
-            let found = await syll.findOne({ 'Course': agent.parameters.course, 'Semester': agent.parameters.semester });
-            if (found !== null) {
+        function syllabus(agent) {
+            syll.findOne({ 'Course': agent.parameters.course, 'Semester': agent.parameters.semester },function(err,found){
+                if (found !== null) {
+                    const payload = {                                               //custom payload implementation
+                        syllabus_card: [
+                            {
+                                Subject_1: `${found.Subject_1}`,
+                                Semester: `${agent.parameters.semester}`,
+                                Course: `${found.Course}`,
+                                Subject_4: `${found.Subject_4}`,
+                                Subject_2: `${found.Subject_2}`,
+                                Subject_3: `${found.Subject_3}`,
+                                Subject_5: `${found.Subject_5}`,
+                                link:`${found.link}`
+                            }
+                        ]
+                    };
+    
+                    agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
+                }
+                else
+                    agent.add("No Record Found");
+            });
+
+
+        }
+
+
+        function show_result(agent) {
+            Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password },function(err,found){
+
+                if (found !== null) {
+                    if (found.Semester==agent.parameters.Semester){
+                        const payload = {                                               //custom payload implementation
+                            cards: [
+                                {
+                                    Subject_1: `${found.Subject_1}`,
+                                    Semester: `${agent.parameters.Semester}`,
+                                    SGPA: `${found.Sgpa}`,
+                                    Subject_4: `${found.Subject_4}`,
+                                    Subject_2: `${found.Subject_2}`,
+                                    Subject_3: `${found.Subject_3}`,
+                                    Subject_5: `${found.Subject_5}`,
+                                    UserID: `${agent.parameters.UserID}`,
+                                    Name: `${found.Name}`
+                                }
+                            ]
+                        };
+    
+                        agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
+                    }
+    
+                    else
+                        agent.add(`No Record for Semester ${agent.parameters.Semester}`);
+                    
+                }
+                else
+                    agent.add("Wrong ID or Password");
+    
+            });
+        }
+
+      function notice(agent){
+           Notice.find({},function(err,found){
+            if(found!==null){
                 const payload = {                                               //custom payload implementation
-                    syllabus_card: [
+                    notice: [
                         {
-                            Subject_1: `${found.Subject_1}`,
-                            Semester: `${agent.parameters.semester}`,
-                            Course: `${found.Course}`,
-                            Subject_4: `${found.Subject_4}`,
-                            Subject_2: `${found.Subject_2}`,
-                            Subject_3: `${found.Subject_3}`,
-                            Subject_5: `${found.Subject_5}`,
-                            link:`${found.link}`
+                            Notice_1:{
+                                Name:`${found[0].Notice_1.Name}`,
+                                link:`${found[0].Notice_1.link}`
+                            },
+                            Notice_2:{
+                                Name:`${found[0].Notice_2.Name}`,
+                                link:`${found[0].Notice_2.link}`
+                            },
+                            
+                            Notice_3:{
+                                Name:`${found[0].Notice_3.Name}`,
+                                link:`${found[0].Notice_3.link}`
+                            },
+                            
+                            Notice_4:{
+                                Name:`${found[0].Notice_4.Name}`,
+                                link:`${found[0].Notice_4.link}`
+                            },
+                            
+                            Notice_5:{
+                                Name:`${found[0].Notice_5.Name}`,  
+                                link:`${found[0].Notice_5.link}`
+                            }
                         }
                     ]
                 };
@@ -58,84 +133,10 @@ module.exports = app => {
                 agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
             }
             else
-                agent.add("No Record Found");
+            agent.add("No record");
 
-
-        }
-
-
-        async function show_result(agent) {
-            let found = await Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password });
-            if (found !== null) {
-                if (found.Semester==agent.parameters.Semester){
-                    const payload = {                                               //custom payload implementation
-                        cards: [
-                            {
-                                Subject_1: `${found.Subject_1}`,
-                                Semester: `${agent.parameters.Semester}`,
-                                SGPA: `${found.Sgpa}`,
-                                Subject_4: `${found.Subject_4}`,
-                                Subject_2: `${found.Subject_2}`,
-                                Subject_3: `${found.Subject_3}`,
-                                Subject_5: `${found.Subject_5}`,
-                                UserID: `${agent.parameters.UserID}`,
-                                Name: `${found.Name}`
-                            }
-                        ]
-                    };
-
-                    agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
-                }
-
-                else
-                    agent.add(`No Record for Semester ${agent.parameters.Semester}`);
-                
-            }
-            else
-                agent.add("Wrong ID or Password");
-
-
-        }
-
-        async function notice(agent){
-           agent.add('notice');
-            let found=await Notice.find({});
-            if(found!==null){
-                    const payload = {                                               //custom payload implementation
-                        notice: [
-                            {
-                                Notice_1:{
-                                    Name:`${found[0].Notice_1.Name}`,
-                                    link:`${found[0].Notice_1.link}`
-                                },
-                                Notice_2:{
-                                    Name:`${found[0].Notice_2.Name}`,
-                                    link:`${found[0].Notice_2.link}`
-                                },
-                                
-                                Notice_3:{
-                                    Name:`${found[0].Notice_3.Name}`,
-                                    link:`${found[0].Notice_3.link}`
-                                },
-                                
-                                Notice_4:{
-                                    Name:`${found[0].Notice_4.Name}`,
-                                    link:`${found[0].Notice_4.link}`
-                                },
-                                
-                                Notice_5:{
-                                    Name:`${found[0].Notice_5.Name}`,  
-                                    link:`${found[0].Notice_5.link}`
-                                }
-                            }
-                        ]
-                    };
-
-                    agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
-                }
-                else
-                agent.add("No record");
-
+           });
+           
 
         }
 
