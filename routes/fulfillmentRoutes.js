@@ -96,8 +96,6 @@ module.exports = app => {
 
       async function notice(agent){
            let found=await Notice.find({});
-           console.log(found);
-           agent.add(found);
             if(found!==null){
                 const payload = {                                               //custom payload implementation
                     notice: [
