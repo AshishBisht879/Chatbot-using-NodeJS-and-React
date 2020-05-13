@@ -96,7 +96,10 @@ module.exports = app => {
 
       async function notice(agent){
         console.log("its notice");
+        agent.add("its notice");
            let found=await Notice.find({});
+           console.log(found);
+           agent.add(found);
             if(found!==null){
                 const payload = {                                               //custom payload implementation
                     notice: [
@@ -127,6 +130,7 @@ module.exports = app => {
                         }
                     ]
                 };
+                agent.add('done');
 
                 agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
             }
