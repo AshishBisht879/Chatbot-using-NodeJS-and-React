@@ -20,7 +20,7 @@ module.exports = app => {
         }
 
         function No_answered_query(agent) {
-            console.log('no_answer');
+            agent.add('no_answer');
 
             agent.add("Thank you. I hope next time i wl learn about that Query");
 
@@ -98,7 +98,7 @@ module.exports = app => {
         }
 
         async function notice(agent){
-            console.log('notice');
+           agent.add('notice');
             let found=await Notice.find({});
             if(found!==null){
                     const payload = {                                               //custom payload implementation
