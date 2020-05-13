@@ -3,7 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose=require('mongoose');  //for database
 const config=require('./config/keys');
-mongoose.connect(config.mongoURI,{useUnifiedTopology: true, useNewUrlParser: true});//it will connect to database create an instance for once and further use that instance 
+mongoose.connect(config.mongoURI,{useUnifiedTopology: true, useNewUrlParser: true,},{
+    server: {
+      socketOptions: {
+        socketTimeoutMS: 0,
+        connectionTimeout: 0
+      }
+    }
+  });//it will connect to database create an instance for once and further use that instance 
 
 require('./models/No_query_result.js');
 require('./models/Result');
