@@ -15,6 +15,7 @@ module.exports = app => {
         }
 
         function calendar(agent) {
+            console.log("its calendar");
             agent.add('Getting you to the calendar');
 
         }
@@ -94,6 +95,7 @@ module.exports = app => {
         }
 
       async function notice(agent){
+        console.log("its notice");
            let found=await Notice.find({});
             if(found!==null){
                 const payload = {                                               //custom payload implementation
