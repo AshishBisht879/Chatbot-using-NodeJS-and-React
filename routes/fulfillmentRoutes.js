@@ -35,8 +35,8 @@ module.exports = app => {
 
         }
 
-        function syllabus(agent) {
-            syll.findOne({ 'Course': agent.parameters.course, 'Semester': agent.parameters.semester },function(err,found){
+      async  function syllabus(agent) {
+          let found= await   syll.findOne({ 'Course': agent.parameters.course, 'Semester': agent.parameters.semester });
                 if (found !== null) {
                     const payload = {                                               //custom payload implementation
                         syllabus_card: [
@@ -57,14 +57,12 @@ module.exports = app => {
                 }
                 else
                     agent.add("No Record Found");
-            });
-
 
         }
 
 
-        function show_result(agent) {
-            Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password },function(err,found){
+       async function show_result(agent) {
+           let found= await Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password });
 
                 if (found !== null) {
                     if (found.Semester==agent.parameters.Semester){
@@ -93,12 +91,10 @@ module.exports = app => {
                 }
                 else
                     agent.add("Wrong ID or Password");
-    
-            });
         }
 
-      function notice(agent){
-           Notice.find({},function(err,found){
+      async function notice(agent){
+           let found=await Notice.find({});
             if(found!==null){
                 const payload = {                                               //custom payload implementation
                     notice: [
@@ -135,7 +131,6 @@ module.exports = app => {
             else
             agent.add("No record");
 
-           });
            
 
         }
