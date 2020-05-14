@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import contact from './pages/Contact';
 import Header from './Header.js';
 import Chatbot from './chatbot/Chatbot.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
         return ( <div> <BrowserRouter>     
