@@ -39,18 +39,14 @@ module.exports = app => {
                                 }
                             ]
                         };
-    
-                       console.log(payload);
                        res.send(payload);
                     }
     
                     else
-                       console.log(`No Record for Semester ${req.body.user.semester}`);
                        res.send(`No Record for Semester ${req.body.user.semester}`);
                     
                 }
                 else
-                    console.log("Wrong ID or Password");
                     res.send("Wrong ID or Password");
     })
 }

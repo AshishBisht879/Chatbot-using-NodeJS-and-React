@@ -62,7 +62,8 @@ module.exports = app => {
 
 
        async function show_result(agent) {
-        agent.add("result_login");
+        agent.add("result_login");      // When somone wants to see result it send this response
+
         //    let found= await Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password });
 
         //         if (found !== null) {
