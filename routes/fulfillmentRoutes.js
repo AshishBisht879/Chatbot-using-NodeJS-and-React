@@ -15,7 +15,6 @@ module.exports = app => {
         }
 
         function calendar(agent) {
-            console.log("its calendar");
             agent.add('Getting you to the calendar');
 
         }
@@ -63,35 +62,36 @@ module.exports = app => {
 
 
        async function show_result(agent) {
-           let found= await Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password });
+        agent.add("result_login");
+        //    let found= await Result.findOne({ 'UserID': agent.parameters.UserID, 'Password': agent.parameters.Password });
 
-                if (found !== null) {
-                    if (found.Semester==agent.parameters.Semester){
-                        const payload = {                                               //custom payload implementation
-                            cards: [
-                                {
-                                    Subject_1: `${found.Subject_1}`,
-                                    Semester: `${agent.parameters.Semester}`,
-                                    SGPA: `${found.Sgpa}`,
-                                    Subject_4: `${found.Subject_4}`,
-                                    Subject_2: `${found.Subject_2}`,
-                                    Subject_3: `${found.Subject_3}`,
-                                    Subject_5: `${found.Subject_5}`,
-                                    UserID: `${agent.parameters.UserID}`,
-                                    Name: `${found.Name}`
-                                }
-                            ]
-                        };
+        //         if (found !== null) {
+        //             if (found.Semester==agent.parameters.Semester){
+        //                 const payload = {                                               //custom payload implementation
+        //                     cards: [
+        //                         {
+        //                             Subject_1: `${found.Subject_1}`,
+        //                             Semester: `${agent.parameters.Semester}`,
+        //                             SGPA: `${found.Sgpa}`,
+        //                             Subject_4: `${found.Subject_4}`,
+        //                             Subject_2: `${found.Subject_2}`,
+        //                             Subject_3: `${found.Subject_3}`,
+        //                             Subject_5: `${found.Subject_5}`,
+        //                             UserID: `${agent.parameters.UserID}`,
+        //                             Name: `${found.Name}`
+        //                         }
+        //                     ]
+        //                 };
     
-                        agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
-                    }
+        //                 agent.add(new Payload(agent.UNSPECIFIED, payload, { rawPayload: true, sendAsMessage: true }));
+        //             }
     
-                    else
-                        agent.add(`No Record for Semester ${agent.parameters.Semester}`);
+        //             else
+        //                 agent.add(`No Record for Semester ${agent.parameters.Semester}`);
                     
-                }
-                else
-                    agent.add("Wrong ID or Password");
+        //         }
+        //         else
+        //             agent.add("Wrong ID or Password");
         }
 
       async function notice(agent){

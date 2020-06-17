@@ -39,6 +39,7 @@ module.exports = {
             }
         };
 
+       
         //detectIntent endpoint call
         let responses = await sessionClient.detectIntent(request);
         responses = await self.handleAction(responses);
