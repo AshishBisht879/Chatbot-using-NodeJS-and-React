@@ -1,12 +1,12 @@
 
  
-    @media only screen and (max-width :400px) {
+    @media only screen and (max-width :780px) {
         .form1{
       width: 83%;
       height:389px;
         }
     }
-    @media only screen and (min-width :401px) {
+    @media only screen and (min-width :781px) {
         .form1{
         width: 40%;
         height:389px;
