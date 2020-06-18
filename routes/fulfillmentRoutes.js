@@ -14,8 +14,9 @@ module.exports = app => {
             agent.add("I'm sorry,can you try again !?");
         }
 
-        function calendar(agent) {
-            agent.add('Getting you to the calendar');
+        function Schedule(agent) {
+            agent.add("Here's a Link : \n <a href=`https://csitgeu.in/wp/2020/01/04/time-table-4th-sem-6th-sem-8th-sem-mtech-ii-jan-2020/`>https://csitgeu.in/wp/2020/01/04/time-table-4th-sem-6th-sem-8th-sem-mtech-ii-jan-2020/</a>");
+            console.log("Hey");
 
         }
 
@@ -139,7 +140,7 @@ module.exports = app => {
         }
 
         let intentMap = new Map();                           //creating a object 
-        intentMap.set('Query(Calendar)', calendar);         //TO intentMap we add intents that have fulfillment enabled in Dialogflow and provide the method that will run the code for that intent
+        intentMap.set('TimeTable',Schedule);         //TO intentMap we add intents that have fulfillment enabled in Dialogflow and provide the method that will run the code for that intent
 
         intentMap.set('Default Fallback Intent', fallback);
 
