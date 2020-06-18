@@ -15,7 +15,7 @@ module.exports = app => {
         }
 
         function Schedule(agent) {
-            agent.add("Here's a Link : \n <a href=`https://csitgeu.in/wp/2020/01/04/time-table-4th-sem-6th-sem-8th-sem-mtech-ii-jan-2020/`>https://csitgeu.in/wp/2020/01/04/time-table-4th-sem-6th-sem-8th-sem-mtech-ii-jan-2020/</a>");
+            agent.add("Here's a Link : https://csitgeu.in/wp/2020/01/04/time-table-4th-sem-6th-sem-8th-sem-mtech-ii-jan-2020/");
             console.log("Hey");
 
         }
