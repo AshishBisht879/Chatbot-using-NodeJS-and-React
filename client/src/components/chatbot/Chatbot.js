@@ -337,7 +337,7 @@ class Chatbot extends Component {
                     </button>
                                     </div>
                                 </div>
-                                <div><h4 className="loading" style={{ height: "40px" }}></h4></div>
+                                <div><h4 className="loading" style={{ height: "40px" }}></h4></div>     {/*  here Loading is for "Loading Tag" i have use class instead of id because with class all the login result dialog boxes can be access previous one as well as latest one*/}
                             </form>
                         </div>
                     );

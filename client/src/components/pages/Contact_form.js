@@ -110,26 +110,25 @@ constructor(props)
         {
         return (<div style={{ marginTop: 30 }}><h5>For Help Or Queries Related</h5>
             <h5>Ashish Bisht</h5>
-            <h5>Email : <a href={`mailto:${"xyz@gmail.com"}?subject=${'Query Message'}`}>xyz@gmail.com</a></h5>
+            <h5>Email : <a href={`mailto:${"naffrio123@gmail.com"}?subject=${'Query Message'}`}>naffrio123@gmail.com</a></h5>
 
             <br /> <br />
 
             <div id="after_submit"></div>
             <form id="contact_form" method="POST"  onSubmit={this.handleSubmit} >
-                <span >Your name:</span><br />
-                <input style={{ border: "1px solid",paddingLeft: "10px" }} id="name" class="input" name="name" type="text" required onChange={this.handleChange1} /><br />
+                <span ><h5>Your Name:</h5></span>
+                <input style={{ border: "2px solid",paddingLeft: "10px",borderRadius:"10px" }} id="name" class="input" name="name" type="text" placeholder="Name" required onChange={this.handleChange1} /><br />
 
-                <span >Your email:</span><br />
-                <input style={{ border: "1px solid",paddingLeft: "10px" }} id="email" class="input" name="email" type="email" required onChange={this.handleChange2}/><br />
+                <span ><h5>Your Email:</h5></span>
+                <input style={{ border: "2px solid",paddingLeft: "10px",borderRadius:"10px" }} id="email" class="input" name="email" placeholder="Email" type="email" required onChange={this.handleChange2}/><br />
 
-                <span >Your message:</span><br />
-                <textarea placeholder="Your Message" style={{ border: "1px solid", height: "auto", padding: "10px"  }} cols="30" rows="8" required onChange={this.handleChange3}></textarea><br />
+                <span ><h5>Your Message:</h5></span>
+                <textarea placeholder="Your Message.." style={{ border: "2px solid", height: "auto", padding: "10px",borderRadius:"10px"  }} cols="30" rows="8" required onChange={this.handleChange3}></textarea><br />
 
-                <input style={{ border: "1px solid", borderRadius: "5px" }} id="submit_button" type="submit" value="Send Message" />
+                <input style={{ border: "2px solid",padding:"5px",marginTop:"10px",borderRadius: "10px",fontWeight:"500" }} id="submit_button" value="Send Message" type="submit"/><br/>
 
                 <div  style={{marginTop:"20px"}}><h3 id="sending"></h3></div>
              </form>
-
         </div>
         )
 
