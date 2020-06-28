@@ -144,6 +144,14 @@ class Chatbot extends Component {
     handleSubmit(event) {                 //This method is triggered when Result login form is submitted
         event.preventDefault();             //prevent the event on submitted i.e. reload of page
         event.stopPropagation();
+
+        //on click "Loading.." tag shows
+        Array.from(document.getElementsByClassName("loading")).forEach(
+            function (element, index) {
+                element.innerHTML = "Loading...";
+            }
+        );
+
         const user = {
             name: this.form.name,
             password: this.form.password,
@@ -151,6 +159,13 @@ class Chatbot extends Component {
         };
         axios.post("/api/result", { user }).then((res) => {           //sending the form data to URL
             let says;
+
+            Array.from(document.getElementsByClassName("loading")).forEach(                    //Removing the Loading tag
+                function (element, index) {
+                    element.innerHTML = "";
+                }
+            );
+
             try {
                 if (typeof res.data === "string") {                         //checking if the response is String i.e "No record for the Semester" or "Wrong ID or Password"
                     says = {                                                  //then simply send that response as msg
@@ -184,6 +199,7 @@ class Chatbot extends Component {
 
             this.setState({ messages: [...this.state.messages, says] });
         });
+
     }
 
     handleChange1 = (event) => {                                               //this method is triggered when User ID input field is filled
@@ -215,7 +231,7 @@ class Chatbot extends Component {
     }
 
     renderMessages(stateMessages) {
-        console.log(stateMessages);
+
         if (stateMessages) {
             return stateMessages.map((message, i) => {
                 if (                                                             //checking for the response "result_login"  that comes from dialogflow when some wants to see result through server 
@@ -225,7 +241,7 @@ class Chatbot extends Component {
                 ) {
                     return (                                                      //then in return send the login form
                         <div className="form1"
-                            style={{ marginLeft: "8%", border: "2px solid", padding: "30px" }}
+                            style={{ marginLeft: "8%", border: "2px solid", padding: "30px",boxShadow: "5px 5px 5px rgba(0,0,0,0.7)" }}
                         >
 
 
@@ -290,9 +306,8 @@ class Chatbot extends Component {
                                         />
                                         <span>
                                             <b>
-                                                {" "}
                                                 <h5>Semester: </h5>
-                                            </b>{" "}
+                                            </b>
                                         </span>
                                         <input
                                             style={{
@@ -305,6 +320,7 @@ class Chatbot extends Component {
                                             type="number"
                                             placeholder="Semester"
                                             name="semester"
+                                            required
                                             onChange={this.handleChange3}
                                         />
                                         <button
@@ -321,6 +337,7 @@ class Chatbot extends Component {
                     </button>
                                     </div>
                                 </div>
+                                <div><h4 className="loading" style={{ height: "40px" }}></h4></div>
                             </form>
                         </div>
                     );

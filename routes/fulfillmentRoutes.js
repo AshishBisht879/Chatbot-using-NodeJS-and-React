@@ -1,7 +1,6 @@
 const { WebhookClient, Payload } = require('dialogflow-fulfillment');
 const mongoose = require('mongoose');
 const ErrorQuery = mongoose.model('ErrorQuery');  //Importing the ErrorQuery mongoose model that we created in No_answer_query.js
-const Result = mongoose.model('Result');//Importing the Result mongoose model that we created in Result.js
 const syll = mongoose.model('syllabus');
 const Notice=mongoose.model('Notice');
 

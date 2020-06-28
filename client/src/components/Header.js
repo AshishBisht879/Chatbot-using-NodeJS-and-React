@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';           //Link to reload browser components on click the link eg. about ,shop (it will generate the url path  just as link for other component)
-import { NavLink } from 'react-router-dom';
 import { Navbar, Nav} from 'react-bootstrap';
 
 const Header = () => {

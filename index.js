@@ -9,13 +9,14 @@ require('./models/No_query_result.js');
 require('./models/Result');
 require('./models/Syllabus');
 require('./models/Notice');
+require('./models/contact');
 
 app.use(bodyParser.json());
 
 require('./routes/routes.js')(app);
 require('./routes/fulfillmentRoutes.js')(app);
 
-if(process.env.NODE_ENV==='production'){             //tell the server to render the frontend files
+if(process.env.NODE_ENV==='production'){             //tell the server to render the frontend files   The process.env property returns an object containing the user environment.
     app.use(express.static('client/build'));        //all css and javascript files are here
 
 const path=require('path');

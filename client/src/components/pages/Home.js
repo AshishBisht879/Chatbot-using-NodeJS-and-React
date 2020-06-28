@@ -9,7 +9,9 @@ const Landing = () => {
             < div style={{float:'left',width:500,display:'inline',marginLeft:15}}>
                 <img style={{borderRadius:20}} src="https://image.freepik.com/free-vector/chat-bot-mobile-chatting-isometric-concept_107791-286.jpg" width="95%" height='400' alt="chatbot"/>
             </div>
+
     </div>
+    
     </div>)
 };
 export default Landing; 
