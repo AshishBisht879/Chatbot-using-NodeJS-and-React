@@ -1,7 +1,7 @@
 import React from 'react';
 const Card = (props) => (
   <div style={{ float: 'left', width: 500 ,boxShadow: "5px 5px 5px rgba(0,0,0,0.7)"}}>
-    <div className="card">
+    <div className="card" style={{boxShadow: "5px 5px 5px rgba(0,0,0,0.7)"}}>
       <div style={{ border: '1px solid', textAlign: 'center' }}>
         <span className="card-title"><h5><strong>STATEMENT OF MARKS(PROVISIONAL)</strong></h5></span>
       </div>
