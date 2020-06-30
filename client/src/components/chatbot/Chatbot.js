@@ -1,6 +1,8 @@
 //Class Component   of React
 //states
 
+//Updated version on 30-06-20
+
 import React, { Component } from "react"; //react is default export and Component in Named export (In a module we can have one default export and many named export )
 import axios from "axios/index"; //axios to send request to backend
 import Message from "./Message";
@@ -12,6 +14,7 @@ import Card from "./Card";
 import "./style.css";        //for responsive form
 import Card1 from "./Card1";
 import Card2 from "./Card2";
+import College from "./About_college";
 
 const cookies = new Cookies(); //creating cookie object
 
@@ -217,17 +220,27 @@ class Chatbot extends Component {
         // this.setState({ semester: event.target.value});
     };
 
-    renderCard(cards, tag) {
-        if (tag === "Card") {
-            return <Card payload={cards} />;
-        } else if (tag === "Card1")
-            return cards.map((card, i) => (
-                <Card1 key={i} payload={card.structValue} />
-            ));
-        else if (tag === "Card2")
-            return cards.map((card, i) => (
-                <Card2 key={i} payload={card.structValue} />
-            ));
+    renderCard(p) {
+         if(p[0])                                 //for result returned in form for array of objects from server
+        {
+            return <Card payload={p[0]} />;
+        }  
+        else if(p.text&&p.text.text[0] === "college")
+        {   
+            return <College/>
+        }                                 
+       else if(p.payload && p.payload.fields.syllabus_card)                          //for syllabus 
+        {
+            return p.payload.fields.syllabus_card.listValue.values.map((card, i) => (
+                        <Card1 key={i} payload={card.structValue} />
+                    ));
+        }
+        else if(p.payload&&p.payload.fields.notice)                               //for notice
+        {
+            return p.payload.fields.notice.listValue.values.map((card, i) => (
+                         <Card2 key={i} payload={card.structValue} />
+                   ));
+        }
     }
 
     renderMessages(stateMessages) {
@@ -337,12 +350,14 @@ class Chatbot extends Component {
                     </button>
                                     </div>
                                 </div>
-                                <div><h4 className="loading" style={{ height: "40px" }}></h4></div>     {/*  here Loading is for "Loading Tag" i have use class instead of id because with class all the login result dialog boxes can be access previous one as well as latest one*/}
+                                <div><h4 className="loading" style={{ height: "40px" }}> </h4></div>     {/*  here Loading is for "Loading Tag" i have use class instead of id because with class all the login result dialog boxes can be access previous one as well as latest one*/}
                             </form>
                         </div>
                     );
-                } else if (message.msg && message.msg.text && message.msg.text.text) {
-                    //Checking if text messages are there in response then show text messages
+                } 
+                
+                else if (message.msg && message.msg.text && message.msg.text.text&& message.msg.text.text[0]!=="college") {
+                    //Checking if text messages are there in response then show text messages    except if the response is "college"  because for that card need to show up  rather than simple text
                     return (
                         <Message
                             key={i}
@@ -350,29 +365,25 @@ class Chatbot extends Component {
                             text={message.msg.text.text}
                         />
                     );
-                } else if (
-                    message.msg &&
-                    message.msg.payload &&
+                } else if (                                                      //checking for all type of cards  message.msg[0] returned from server after searching the result of student
+                    (message.msg &&                                             //message.msg.text.text is the returned text from dialogflow when someone search about College
+                    message.msg.payload &&                                      // message.msg.payload.fields is the custom payload card from fulfillment
                     message.msg.payload.fields &&
-                    message.msg.payload.fields.syllabus_card
+                    message.msg.payload.fields)||message.msg[0]||message.msg.text.text[0] === "college"
                 ) {
                     return (
                         <div>
                             <div className="card-panel grey lighten-5 z-depth-1 ">
-                                <div style={{ overflow: "hidden" }}>
+                                <div style={{ overflow: "hidden"}}>
                                     <div className="col s2">
-                                        <button className="waves-effect waves-light btn">
+                                        <button className="waves-effect orange waves-light btn">
                                             {message.speaks}
                                         </button>
                                     </div>
 
                                     <div style={{ overflow: "auto" }}>
                                         <div style={{ width: "100%" }}>
-                                            {this.renderCard(
-                                                message.msg.payload.fields.syllabus_card.listValue
-                                                    .values,
-                                                "Card1"
-                                            )}{" "}
+                                            {this.renderCard(message.msg)}
                                             {/* Card1 is just a string to tell that  card for syllabus need to be use   */}
                                         </div>
                                     </div>
@@ -380,93 +391,7 @@ class Chatbot extends Component {
                             </div>
                         </div>
                     );
-                } else if (
-                    message.msg &&
-                    message.msg.payload &&
-                    message.msg.payload.fields &&
-                    message.msg.payload.fields.cards
-                ) {
-                    //checking for cards
-                    return (
-                        <div key={i}>
-                            <div className="card-panel grey lighten-5 z-depth-1 ">
-                                <div style={{ overflow: "hidden" }}>
-                                    <div className="col s2">
-                                        <button className="waves-effect waves-light btn">
-                                            {message.speaks}
-                                        </button>
-                                    </div>
-
-                                    <div style={{ overflow: "auto" }}>
-                                        <div
-                                            style={{
-                                                width: `${message.msg.payload.fields.cards.listValue.values.length}*100%`,
-                                            }}
-                                        >
-                                            {this.renderCard(
-                                                message.msg.payload.fields.cards.listValue.values,
-                                                "Card"
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                } else if (
-                    message.msg &&
-                    message.msg.payload &&
-                    message.msg.payload.fields &&
-                    message.msg.payload.fields.notice
-                ) {
-                    //checking for cards
-                    return (
-                        <div key={i}>
-                            <div className="card-panel grey lighten-5 z-depth-1 ">
-                                <div style={{ overflow: "hidden" }}>
-                                    <div className="col s2">
-                                        <button className="waves-effect waves-light btn">
-                                            {message.speaks}
-                                        </button>
-                                    </div>
-
-                                    <div style={{ overflow: "auto" }}>
-                                        <div
-                                            style={{
-                                                width: `${message.msg.payload.fields.notice.listValue.values.length}*100%`,
-                                            }}
-                                        >
-                                            {this.renderCard(
-                                                message.msg.payload.fields.notice.listValue.values,
-                                                "Card2"
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                } else if (message.msg[0]) {                                           //checking for the Result that is send by the server
-                    return (
-                        <div>
-                            <div className="card-panel grey lighten-5 z-depth-1 ">
-                                <div style={{ overflow: "hidden" }}>
-                                    <div className="col s2">
-                                        <button className="waves-effect waves-light btn">
-                                            BOT
-                    </button>
-                                    </div>
-
-                                    <div style={{ overflow: "auto" }}>
-                                        <div style={{ width: "100%" }}>
-                                            {this.renderCard(message.msg[0], "Card")}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                }
+                } 
             });
         } else {
             return null;
@@ -502,7 +427,7 @@ class Chatbot extends Component {
 
                     <div
                         id="chatbot"
-                        style={{ maxHeight: 488, width: "100%", overflow: "auto" }}
+                        style={{ maxHeight: 488, width: "100%", overflow: "auto",borderRadius:"10px" }}
                     >
                         {this.renderMessages(this.state.messages)}
                         <div

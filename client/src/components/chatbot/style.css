@@ -5,10 +5,23 @@
       width: 83%;
       height:420px;
         }
+
+        .collegeStyle
+        {
+          margin-left:5%;
+          padding:20;
+          width:80%;
+        }
     }
     @media only screen and (min-width :781px) {
         .form1{
         width: 40%;
         height:420px;
+        }
+        .collegeStyle
+        {
+          margin-left:5%;
+          padding:20;
+          width:50%;
         }
       }

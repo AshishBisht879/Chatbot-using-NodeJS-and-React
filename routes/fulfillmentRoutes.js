@@ -150,6 +150,7 @@ module.exports = app => {
         intentMap.set('syllabus', syllabus);
 
         intentMap.set('Notice', notice);
+
         agent.handleRequest(intentMap);
     });
 }

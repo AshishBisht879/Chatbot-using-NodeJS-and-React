@@ -6,7 +6,7 @@ const Message = (props) => (
             <div className="row">
                 {props.speaks === 'bot' &&                                     //true && expression = expression  
                     <div style={{marginRight:"50px",marginLeft:"5px"}}>
-                        <button className="waves-effect orange waves-light btn">{props.speaks}</button>
+                        <button className="waves-effect orange waves-light btn"> {props.speaks}</button>
                     </div>
                 }
                 <div className="col s10">

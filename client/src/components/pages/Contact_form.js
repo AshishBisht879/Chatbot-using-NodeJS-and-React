@@ -127,7 +127,7 @@ constructor(props)
 
                 <input style={{ border: "2px solid",padding:"5px",marginTop:"10px",borderRadius: "10px",fontWeight:"500" }} id="submit_button" value="Send Message" type="submit"/><br/>
 
-                <div  style={{marginTop:"20px"}}><h3 id="sending"></h3></div>
+                <div  style={{marginTop:"20px"}}><h3 id="sending"> </h3></div>
              </form>
         </div>
         )
